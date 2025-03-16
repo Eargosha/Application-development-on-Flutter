@@ -11,6 +11,7 @@ class SecondScreen extends StatelessWidget {
     required this.time,
   });
 
+
   String? validateInputs() {
     if (initialSpeed < 0) {
       return 'Начальная скорость не может быть отрицательной';
