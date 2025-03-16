@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.blueGrey,
           centerTitle: true,
           title: Text(
-            'Лабораторная работа №1',
+            'Лабораторная работа №2',
             style: TextStyle(
               fontWeight: FontWeight.w600,
               fontFamily: 'Georgia',
