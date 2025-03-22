@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:inputs/pages/cubit/acceleration_cubit.dart';
 
 import 'second_screen_page.dart';
 
@@ -9,8 +11,7 @@ class FirstScreen extends StatefulWidget {
 
 class _FirstScreenState extends State<FirstScreen> {
   final _formKey = GlobalKey<FormState>();
-  
-  
+
   final _initialSpeedField = TextEditingController();
   final _finalSpeedField = TextEditingController();
   final _timeField = TextEditingController();
@@ -110,16 +111,22 @@ class _FirstScreenState extends State<FirstScreen> {
                   onPressed: () {
                     if (_formKey.currentState!.validate() && isAgreed) {
                       _formKey.currentState!.save();
+
+                      final initialSpeed = double.parse(
+                        _initialSpeedField.text,
+                      );
+                      final finalSpeed = double.parse(_finalSpeedField.text);
+                      final time = double.parse(_timeField.text);
+
+                      context.read<AccelerationCubit>().calculateAcceleration(
+                        initialSpeed,
+                        finalSpeed,
+                        time,
+                      );
+
                       Navigator.push(
                         context,
-                        MaterialPageRoute(
-                          builder:
-                              (context) => SecondScreen(
-                                initialSpeed: double.parse(_initialSpeedField.text),
-                                finalSpeed: double.parse(_finalSpeedField.text),
-                                time: double.parse(_timeField.text),
-                              ),
-                        ),
+                        MaterialPageRoute(builder: (context) => SecondScreen()),
                       );
                     } else if (!isAgreed) {
                       ScaffoldMessenger.of(context).showSnackBar(
