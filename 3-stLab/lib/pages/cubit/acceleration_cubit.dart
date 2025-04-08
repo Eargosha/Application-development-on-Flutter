@@ -3,8 +3,8 @@ import 'package:inputs/pages/cubit/acceleration_state.dart';
 
 // Сам кубит кубитим
 class AccelerationCubit extends Cubit<AccelerationState> {
-  // Конструктор. Устанавливает начальное состояние с ускорением, равным 0.
-  AccelerationCubit() : super(AccelerationCalculated(acceleration: 0));
+  // Конструктор. Устанавливает начальное состояние в инициализацию
+  AccelerationCubit() : super(AccelerationInitial());
 
   // Вычисляет ускорение на основе начальной и конечной скорости, а также времени.
   // Если входные данные некорректны (отрицательные скорости или время <= 0),
@@ -29,5 +29,9 @@ class AccelerationCubit extends Cubit<AccelerationState> {
       double acceleration = (finalSpeed - initialSpeed) / time;
       emit(AccelerationCalculated(acceleration: acceleration));
     }
+  }
+
+  void erraseState() {
+    emit(AccelerationInitial());
   }
 }

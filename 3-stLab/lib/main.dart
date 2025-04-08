@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:inputs/pages/cubit/acceleration_cubit.dart';
 
-import 'pages/first_screen_page.dart';
+import 'pages/screen_provider.dart';
 
 void main() {
   runApp(const MainApp());
@@ -18,9 +18,9 @@ class MainApp extends StatelessWidget {
       create: (context) => AccelerationCubit(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Лаб. раб №3, калькулятор ускорения',
+        title: 'Калькулятор ускорения',
         theme: ThemeData(primarySwatch: Colors.green),
-        home: FirstScreen(),
+        home: ScreenProvider(),
       ),
     );
   }
