@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:inputs/pages/cubit/acceleration_cubit.dart';
+import 'package:inputs/pages/cubit/accelaration_cubit/acceleration_cubit.dart';
 
 // Виджеты для body ввода данных
 class FirstScreen extends StatefulWidget {
@@ -107,11 +107,20 @@ class _FirstScreenState extends State<FirstScreen> {
                     final finalSpeed = double.parse(_finalSpeedField.text);
                     final time = double.parse(_timeField.text);
 
-                    context.read<AccelerationCubit>().calculateAcceleration(
-                      initialSpeed,
-                      finalSpeed,
-                      time,
-                    );
+                    // Сохраняем в БД и тут же вычисляем
+                    context.read<AccelerationCubit>().saveToDB({
+                      "initialSpeed": initialSpeed,
+                      "finalSpeed": finalSpeed,
+                      "time": time,
+                      "acceleration": context
+                          .read<AccelerationCubit>()
+                          .calculateAcceleration(
+                            initialSpeed,
+                            finalSpeed,
+                            time,
+                          ),
+                      "timestamp": DateTime.now().toString(),
+                    });
                   } else if (!isAgreed) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(

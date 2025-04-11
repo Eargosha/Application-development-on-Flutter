@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:inputs/pages/cubit/acceleration_state.dart';
+import 'package:inputs/database_provider.dart';
+import 'package:inputs/pages/cubit/accelaration_cubit/acceleration_state.dart';
 
 // Сам кубит кубитим
 class AccelerationCubit extends Cubit<AccelerationState> {
@@ -14,7 +15,7 @@ class AccelerationCubit extends Cubit<AccelerationState> {
   //   - initialSpeed: начальная скорость (м/с)
   //   - finalSpeed: конечная скорость (м/с)
   //   - time: время (с)
-  void calculateAcceleration(
+  double? calculateAcceleration(
     double initialSpeed,
     double finalSpeed,
     double time,
@@ -25,10 +26,17 @@ class AccelerationCubit extends Cubit<AccelerationState> {
           errorMessage: 'Некорректные входные данные в calculateAcceleration',
         ),
       );
+      return -666;
     } else {
       double acceleration = (finalSpeed - initialSpeed) / time;
       emit(AccelerationCalculated(acceleration: acceleration));
+      return acceleration;
     }
+  }
+
+  // Сохранение в локальную БД
+  Future<int> saveToDB(Map<String, dynamic> calculation) async {
+    return await DatabaseProvider.db.addCalculation(calculation);
   }
 
   void erraseState() {
