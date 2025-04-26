@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rover_mars/models/photos.dart';
+import 'package:rover_mars/models/photos_model.dart';
 
 class PhotoInfoScreen extends StatelessWidget {
   final Photos photo;

@@ -1,7 +1,7 @@
 import 'package:rover_mars/cubit/nasa_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rover_mars/models/nasa.dart';
-import 'package:rover_mars/requests/api.dart';
+import 'package:rover_mars/models/nasa_model.dart';
+import 'package:rover_mars/requests/nasa_api.dart';
 
 class NasaCubit extends Cubit<NasaState> {
   NasaCubit() : super(NasaLoadingState());

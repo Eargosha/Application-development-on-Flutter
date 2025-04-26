@@ -1,4 +1,4 @@
-import 'package:rover_mars/models/nasa.dart';
+import 'package:rover_mars/models/nasa_model.dart';
 
 abstract class NasaState {}
 

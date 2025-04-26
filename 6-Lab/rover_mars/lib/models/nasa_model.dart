@@ -1,4 +1,4 @@
-import 'package:rover_mars/models/photos.dart';
+import 'package:rover_mars/models/photos_model.dart';
 
 class Nasa {
   List<Photos>? photos;

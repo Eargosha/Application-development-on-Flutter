@@ -1,5 +1,5 @@
-import 'package:rover_mars/models/camera.dart';
-import 'package:rover_mars/models/rover.dart';
+import 'package:rover_mars/models/camera_model.dart';
+import 'package:rover_mars/models/rover_model.dart';
 
 class Photos {
   int? id;
